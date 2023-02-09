@@ -7,8 +7,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
+/**
+ * Servicio que retorna un archivo JavaScript
+ */
 public class JsService implements RESTService {
+
+    /**
+     * Header del archivo JavaScript
+     * @return String con el header del archivo
+     */
     @Override
     public String getHeader() {
         return "HTTP/1.1 200 OK\r\n" +
@@ -16,6 +23,11 @@ public class JsService implements RESTService {
                 "\r\n";
     }
 
+
+    /**
+     * Respuesta del archivo JavaScript
+     * @return String con el cuerpo del archivo
+     */
     @Override
     public String getResponse() throws IOException {
         Path file = Paths.get("src/main/resources/prueba.js");

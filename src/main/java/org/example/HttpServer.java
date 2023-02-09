@@ -5,6 +5,9 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Servidor HTTP encargado de tomar y procesar las peticiones
+ */
 public class HttpServer {
 
     private static HttpServer _instance = new HttpServer();
@@ -12,10 +15,19 @@ public class HttpServer {
 
     private HttpServer (){}
 
+    /**
+     * Retorna la instancia del HTTPServer
+     * @return instancia del HTTPServer
+     */
     public static HttpServer getInstance() {
         return _instance;
     }
 
+    /**
+     * Conexion con el puerto e inicialización del html inicial
+     * @param args
+     * @throws IOException
+     */
     public void run(String[] args) throws IOException {
         ServerSocket serverSocket = null;
         try {
@@ -67,6 +79,10 @@ public class HttpServer {
         serverSocket.close();
     }
 
+    /**
+     * Creacion del HTML inicial que ve el usuario al cargar la pagina
+     * @return HTML inicial
+     */
     private String htmlGetForm(){
         return "HTTP/1.1 200 OK\r\n" +
                 "Content-type: text/html\r\n" +
@@ -87,6 +103,12 @@ public class HttpServer {
 
     }
 
+    /**
+     * Buca y retorna el servicio solicitado por la URL, de no encontrarse salta la pantalla de error
+     * @param serviceName nombre del servicio
+     * @return Archivo solicitado
+     * @throws IOException
+     */
     private String executeService(String serviceName) throws IOException {
         try{
             RESTService rs = services.get(serviceName);
@@ -101,6 +123,11 @@ public class HttpServer {
         }
     }
 
+    /**
+     * Añade los servicios al arreglo
+     * @param key nombre del nuevo servicio
+     * @param service Servicio creado
+     */
     public void addService(String key, RESTService service) {
         services.put(key, service);
     }}
