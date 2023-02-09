@@ -57,8 +57,7 @@ public class HttpServer {
             if (request.startsWith("/apps/")) {
                 outputLine = executeService(request.substring(5));
             } else {
-//                outputLine = htmlGetForm(); ----- 404
-                outputLine = "";
+                outputLine = htmlGetForm();
             }
             out.println(outputLine);
             out.close();
@@ -66,6 +65,26 @@ public class HttpServer {
             clientSocket.close();
         }
         serverSocket.close();
+    }
+
+    private String htmlGetForm(){
+        return "HTTP/1.1 200 OK\r\n" +
+                "Content-type: text/html\r\n" +
+                "\r\n" +
+                "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "    <head>\n" +
+                "        <title>Form Example</title>\n" +
+                "        <meta charset=\"UTF-8\">\n" +
+                "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                "    </head>\n" +
+                "    <body>\n" +
+                "        <h1>New API REST</h1>\n" +
+                "        <h2>Available links:</h2>\n" +
+                "        <ul> <li> /apps/html </li>  <li> /apps/js </li>  <li> /apps/img </li>  <li> /apps/css </li> </ul>\n" +
+                "    </body>\n" +
+                "</html>";
+
     }
 
     private String executeService(String serviceName) throws IOException {
