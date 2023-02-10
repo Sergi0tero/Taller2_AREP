@@ -17,11 +17,11 @@ public class FirstApp {
      */
     public static void main(String[] args) throws IOException {
         HttpServer server = HttpServer.getInstance();
-        server.addService("/html", new HTMLService());
-        server.addService("/js", new JsService());
-        server.addService("/img", new IMGService());
-        server.addService("/css", new CssService());
-        server.addService("/404", new Error404());
+        server.addService("/prueba.html", new HTMLService());
+        server.addService("/prueba.js", new JsService());
+        server.addService("/prueba.img", new IMGService());
+        server.addService("/prueba.css", new CssService());
+        server.addService("/error404.html", new Error404());
         server.run(args);
     }
 }

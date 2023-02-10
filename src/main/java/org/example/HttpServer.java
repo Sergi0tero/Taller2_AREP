@@ -116,7 +116,7 @@ public class HttpServer {
             String body = rs.getResponse();
             return header + body;
         } catch (Exception e){
-            RESTService rs = services.get("/404");
+            RESTService rs = services.get("/error404.html");
             String header = rs.getHeader();
             String body = rs.getResponse();
             return header + body;
